@@ -17,7 +17,7 @@ Simple link shortener that allows for custom URL codes, written using own [PHP-S
 ```shell
 composer install
 ```
-- Import [DB scheme](https://github.com/lopatar/link-shortener/blob/main/db.sql)
+- Import [DB scheme](https://github.com/lopatar/link-shortener/blob/master/db.sql)
 - Edit DB credentials in App/Config.php
 - Route all requests to public/index.php
 - Done!
