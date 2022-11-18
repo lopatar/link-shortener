@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Jiří Lopatář" name="author">
+    <meta content="Link shortener, link, shortener" name="keywords">
+    <meta content="Simple link shortener that allows for custom URL codes." name="description">
+    <title>Link shortener</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .available {
+            color: #00ff00;
+        }
+
+        .taken {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Link shortener</h1>
+<form action="/api/shorten" method="POST">
+    <div>
+        <label for="code">Shortened URL code, leave empty for random</label>
+    </div>
+    <div>
+        <input id="code" maxlength="32" minlength="2" name="code" placeholder="Shortened code" oninput="OnCustomCodeChange()" type="text">
+		<div id="availability-div" hidden>
+			<label id="availability-label" hidden>
+				Availability text
+			</label>
+		</div>
+	</div>
+    <div>
+        <input name="link" placeholder="Link to be shortened" required type="url">
+    </div>
+    <button type="submit" id="shortenButton">Shorten</button>
+</form>
+</body>
+
+<footer>
+    <a href="https://github.com/lopatar/link-shortener" target="_blank">Source code</a>
+</footer>
+
+<script>
+    function OnCustomCodeChange() {
+        const codeText = document.getElementById('code').value;
+        const shortenButton = document.getElementById('shortenButton');
+        const availabilityDiv = document.getElementById('availability-div');
+        const availabilityLabel = document.getElementById('availability-label');
+
+        if (codeText.length > 2) {
+            availabilityDiv.hidden = false;
+            availabilityLabel.hidden = false;
+
+            fetch('/api/is-taken/' + codeText).then(response => response.json()).then(
+                data => {
+                    if (data.taken)
+                    {
+                        shortenButton.setAttribute('disabled', 'disabled');
+                        availabilityLabel.className = 'taken';
+                        availabilityLabel.textContent = 'Not available!';
+                    }
+                    else
+                    {
+                        shortenButton.removeAttribute('disabled');
+                        availabilityLabel.className = 'available';
+                        availabilityLabel.textContent = 'Available!';
+                    }
+                }
+            )
+        } else {
+            availabilityDiv.hidden = true;
+            availabilityLabel.hidden = true;
+        }
+    }
+</script>
+</html>
+

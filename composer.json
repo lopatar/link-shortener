@@ -1,0 +1,27 @@
+{
+  "name": "lopatar/link-shortener",
+  "type": "project",
+  "license": "WTFPL",
+  "autoload": {
+    "psr-4": {
+      "Sdk\\": "Sdk/",
+      "App\\": "App/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Jiří Lopatář",
+      "email": "jiri@lopatar.me"
+    }
+  ],
+  "description": "Simple privacy respecting link shortener with support for custom URLs!",
+  "require-dev": {
+    "phpstan/phpstan": "*"
+  },
+  "require": {
+    "php": ">=8.1",
+    "ext-mysqli": "*",
+    "ext-openssl": "*",
+    "ext-curl": "*"
+  }
+}
