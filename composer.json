@@ -2,12 +2,6 @@
   "name": "lopatar/link-shortener",
   "type": "project",
   "license": "WTFPL",
-  "autoload": {
-    "psr-4": {
-      "Sdk\\": "Sdk/",
-      "App\\": "App/"
-    }
-  },
   "authors": [
     {
       "name": "Jiří Lopatář",
@@ -19,6 +13,7 @@
     "phpstan/phpstan": "*"
   },
   "require": {
+    "lopatar/php-sdkv2": "*",
     "php": ">=8.1",
     "ext-mysqli": "*",
     "ext-openssl": "*",
