@@ -7,6 +7,7 @@ use App\Config;
 use Sdk\Database\MariaDB\Connection;
 use Sdk\Http\Request;
 use Sdk\Http\Response;
+use Sdk\IConfig;
 use Sdk\Utils\Random;
 
 final class ShortenedLink
@@ -30,7 +31,7 @@ final class ShortenedLink
 		return Connection::query('SELECT code FROM links WHERE code=?', [$code])->num_rows === 1;
 	}
 
-	public static function insert(string $url, ?string $code = null): ?self
+	public static function insert(string $url, Config $config, ?string $code = null): ?self
 	{
 		if ($code !== null && self::exists($code)) {
 			return null;
@@ -38,7 +39,7 @@ final class ShortenedLink
 
 		if ($code === null) {
 			do {
-				$code = Random::stringSafe(Config::SHORTENED_URL_CODE_LENGTH);
+				$code = Random::stringSafe($config->getUrlCodeLength());
 			} while (self::exists($code));
 		}
 

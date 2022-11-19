@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Config;
 use Sdk\App;
 
-$app = new App();
+$config = new Config;
+$app = new App($config);
 
 $app->view('/', 'Home.html');
 
