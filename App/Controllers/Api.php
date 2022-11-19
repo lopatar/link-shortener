@@ -33,7 +33,7 @@ final class Api
 			return $response;
 		}
 
-		$shortenedLink = ShortenedLink::insert($link, $request->getRoute()->config, $code);
+		$shortenedLink = ShortenedLink::insert($link, $code);
 		$response->write(($shortenedLink == null) ? "$code already exists!" : $shortenedLink->getPublicLink($request));
 		return $response;
 	}

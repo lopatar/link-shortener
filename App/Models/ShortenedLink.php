@@ -30,7 +30,7 @@ final class ShortenedLink
 		return new self($code, $data['link']);
 	}
 
-	public static function insert(string $url, Config $config, ?string $code = null): ?self
+	public static function insert(string $url, ?string $code = null): ?self
 	{
 		if ($code !== null && self::exists($code)) {
 			return null;
