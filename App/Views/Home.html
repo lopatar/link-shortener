@@ -38,17 +38,18 @@
         <label for="code">Shortened URL code, leave empty for random</label>
     </div>
     <div>
-        <input id="code" maxlength="32" minlength="2" name="code" placeholder="Shortened code" oninput="OnCustomCodeChange()" type="text">
-		<div id="availability-div" hidden>
-			<label id="availability-label" hidden>
-				Availability text
-			</label>
-		</div>
-	</div>
+        <input id="code" maxlength="32" minlength="2" name="code" oninput="OnCustomCodeChange()"
+               placeholder="Shortened code" type="text">
+        <div hidden id="availability-div">
+            <label hidden id="availability-label">
+                Availability text
+            </label>
+        </div>
+    </div>
     <div>
         <input name="link" placeholder="Link to be shortened" required type="url">
     </div>
-    <button type="submit" id="shortenButton">Shorten</button>
+    <button id="shortenButton" type="submit">Shorten</button>
 </form>
 </body>
 
@@ -69,14 +70,11 @@
 
             fetch('/api/is-taken/' + codeText).then(response => response.json()).then(
                 data => {
-                    if (data.taken)
-                    {
+                    if (data.taken) {
                         shortenButton.setAttribute('disabled', 'disabled');
                         availabilityLabel.className = 'taken';
                         availabilityLabel.textContent = 'Not available!';
-                    }
-                    else
-                    {
+                    } else {
                         shortenButton.removeAttribute('disabled');
                         availabilityLabel.className = 'available';
                         availabilityLabel.textContent = 'Available!';

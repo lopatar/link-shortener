@@ -38,6 +38,12 @@ final class Api
 		return $response;
 	}
 
+	private static function validateCode(string $code): bool
+	{
+		$length = strlen($code);
+		return $length >= 2 && $length <= 32;
+	}
+
 	public static function taken(Request $request, Response $response, array $args): Response
 	{
 		$code = $args['code'];
@@ -48,11 +54,5 @@ final class Api
 		$response->addHeader('Content-Type', 'application/json');
 		$response->write(json_encode($json));
 		return $response;
-	}
-
-	private static function validateCode(string $code): bool
-	{
-		$length = strlen($code);
-		return $length >= 2 && $length <= 32;
 	}
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Sdk\Config;
+use App\Config;
 use Sdk\Database\MariaDB\Connection;
 use Sdk\Http\Request;
 use Sdk\Http\Response;
@@ -12,11 +12,6 @@ use Sdk\Utils\Random;
 final class ShortenedLink
 {
 	public function __construct(public readonly string $code, public readonly string $link) {}
-
-	public static function exists(string $code): bool
-	{
-		return Connection::query('SELECT code FROM links WHERE code=?', [$code])->num_rows === 1;
-	}
 
 	public static function fromCode(string $code): ?self
 	{
@@ -30,16 +25,20 @@ final class ShortenedLink
 		return new self($code, $data['link']);
 	}
 
+	public static function exists(string $code): bool
+	{
+		return Connection::query('SELECT code FROM links WHERE code=?', [$code])->num_rows === 1;
+	}
+
 	public static function insert(string $url, ?string $code = null): ?self
 	{
 		if ($code !== null && self::exists($code)) {
 			return null;
 		}
 
-		if ($code === null)
-		{
+		if ($code === null) {
 			do {
-				$code = Random::stringSafe(config::SHORTENED_URL_CODE_LENGTH);
+				$code = Random::stringSafe(Config::SHORTENED_URL_CODE_LENGTH);
 			} while (self::exists($code));
 		}
 
