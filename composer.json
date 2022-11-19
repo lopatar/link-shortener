@@ -2,6 +2,9 @@
   "name": "lopatar/link-shortener",
   "type": "project",
   "license": "WTFPL",
+  "autoload": {
+    "App\\": "App/"
+  },
   "authors": [
     {
       "name": "Jiří Lopatář",
