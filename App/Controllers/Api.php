@@ -14,7 +14,7 @@ final class Api
 	{
 		$code = $request->getPost('code');
 
-		if ($code === '') //The parameter is sent to server anyways, but as an empty string!
+		if ($code === '') //The parameter is sent to server anyway, but as an empty string!
 		{
 			$code = null;
 		}
