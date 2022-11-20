@@ -33,6 +33,8 @@ final class Api
 			return $response;
 		}
 
+		$response->addHeader('Access-Control-Allow-Origin', 'https://paste.lopatar.me');
+
 		$shortenedLink = ShortenedLink::insert($link, $request->getRoute()->config, $code);
 		$response->write(($shortenedLink == null) ? "$code already exists!" : $shortenedLink->getPublicLink($request));
 		return $response;
