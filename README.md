@@ -10,7 +10,7 @@ own [PHP-SDKv2](https://github.com/lopatar/PHP-SDKv2)
 
 # Requirements
 
-- PHP 8.1
+- PHP 8.2
 - Composer
 - MariaDB/MySQL server
 - Web server (routing all requests to public/index.php)

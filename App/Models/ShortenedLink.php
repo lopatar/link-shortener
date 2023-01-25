@@ -10,9 +10,9 @@ use Sdk\Http\Response;
 use Sdk\IConfig;
 use Sdk\Utils\Random;
 
-final class ShortenedLink
+final readonly class ShortenedLink
 {
-	public function __construct(public readonly string $code, public readonly string $link) {}
+	public function __construct(public string $code, public string $link) {}
 
 	public static function fromCode(string $code): ?self
 	{
