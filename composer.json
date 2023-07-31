@@ -18,7 +18,7 @@
     "phpstan/phpstan": "*"
   },
   "require": {
-    "lopatar/php-sdkv2": "^2.6",
+    "lopatar/php-sdkv2": "^2.7",
     "php": ">=8.2",
     "ext-mysqli": "*",
     "ext-openssl": "*",
