@@ -8,6 +8,9 @@ own [PHP-SDKv2](https://github.com/lopatar/PHP-SDKv2)
 - Optional custom URL codes
 - Realtime url-code availability checking using javascript
 
+# Try me
+[s.lopatar.dev](https://s.lopatar.dev)
+
 # Requirements
 
 - PHP 8.2
